@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TapMeme">
         <activity
-            android:name="com.tensai.memesilk.meme"
+            android:name="com.tensai.memesilk.Meme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

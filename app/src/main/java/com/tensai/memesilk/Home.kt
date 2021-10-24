@@ -1,4 +1,4 @@
 package com.tensai.memesilk
 
-class home {
+class Home {
 }

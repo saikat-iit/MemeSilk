@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".meme"
+    tools:context=".Meme"
     android:background="@color/grey_100">
 
     <com.google.android.material.imageview.ShapeableImageView

@@ -2,30 +2,23 @@ package com.tensai.memesilk
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Point
-import android.graphics.drawable.Drawable
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.*
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Picasso.LoadedFrom
 import okhttp3.*
-import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import kotlin.math.abs
 
 
-class meme : AppCompatActivity(), SensorEventListener {
+class Meme : AppCompatActivity(), SensorEventListener {
 
     // Views
     private lateinit var image: ImageView
@@ -144,36 +137,6 @@ class meme : AppCompatActivity(), SensorEventListener {
             } else getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
-    }
-
-    fun imageDownload(ctx: Context?) {
-        Picasso.with(ctx)
-            .load("http://blog.concretesolutions.com.br/wp-content/uploads/2015/04/Android1.png")
-            .into(getTarget("http://blog.concretesolutions.com.br/wp-content/uploads/2015/04/Android1.png"))
-    }
-
-
-    private fun getTarget(url: String): Target? {
-        return object : Target() {
-            fun onBitmapLoaded(bitmap: Bitmap, from: LoadedFrom?) {
-                Thread {
-                    val file =
-                        File(Intent.ACTION_OPEN_DOCUMENT + "/" + url)
-                    try {
-                        file.createNewFile()
-                        val stream = FileOutputStream(file)
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-                        stream.flush()
-                        stream.close()
-                    } catch (e: IOException) {
-                        Log.e("IOException", "${e.localizedMessage} nice")
-                    }
-                }.start()
-            }
-
-            fun onBitmapFailed(errorDrawable: Drawable?) {}
-            fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
-        }
     }
 }
 
